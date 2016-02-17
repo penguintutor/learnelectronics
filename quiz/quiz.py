@@ -81,5 +81,6 @@ lcd_string("Score",LCD_LINE_2)
 lcd_string(str(score)+" out of "+str(questions),LCD_LINE_3)
 lcd_string("",LCD_LINE_4)
 time.sleep (5)
+file.close()
     
 
