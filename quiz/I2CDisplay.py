@@ -72,6 +72,11 @@ def lcd_byte(bits, mode):
   bus.write_byte(I2C_ADDR, bits_low)
   lcd_toggle_enable(bits_low)
 
+# Clear the screen
+def lcd_clear():
+  lcd_byte(0x01, LCD_CMD)  
+
+
 def lcd_toggle_enable(bits):
   # Toggle enable
   time.sleep(E_DELAY)
