@@ -1,7 +1,6 @@
 from I2CDisplay import *
 import time
 
-# Main program
 # Initialise display
 lcd_init()
 
