@@ -2,7 +2,7 @@ import spidev
 import time
 
 # Sensor Port - where analog device is connected to
-sensorPort = 0
+sensorChannel = 0
 
 spi = spidev.SpiDev()
 # Open connection to SPI device: Bus 0, Device 0
@@ -29,7 +29,7 @@ def readAnalog(input):
 
 
 while True:
-    analogValue = readAnalog(sensorPort)
+    analogValue = readAnalog(sensorChannel)
     print ("Value : " + str(analogValue))
     time.sleep(1)
 
