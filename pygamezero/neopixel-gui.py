@@ -174,15 +174,6 @@ def seq_chaser ():
     strip.setPixelColor(seq_number, Color(255,255,255))
     strip.show()
     
-def seq_chaser ():
-    global seq_number
-    if (seq_number >= LEDCOUNT):
-        seq_number = 0
-    for x in range (LEDCOUNT):
-        strip.setPixelColor(x, Color(0,0,0))
-    strip.setPixelColor(seq_number, Color(255,255,255))
-    strip.show()
-    
 # Needs at least 6 pixels preferably more for this to look correct
 def seq_multi_chaser ():
     global seq_number
