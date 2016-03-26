@@ -5,9 +5,14 @@ import cwiid
 from gpiozero import Robot
 
 robot = Robot(left=(17, 18), right=(22, 23))
-camera = picamera.PiCamera()
-camera.hflip=True
-camera.vflip=True
+camera_enable = False
+try:
+    camera = picamera.PiCamera()
+    camera.hflip=True
+    camera.vflip=True
+    camera_enable=True
+except:
+    print ("Camera not found - disabled");
 
 photo_dir = "/home/pi/photos"
 
@@ -26,7 +31,7 @@ time.sleep(1)
 while True:
     try:
         wii=cwiid.Wiimote()
-        break;
+        break
     except RuntimeError:
         print ("Unable to connect to remote - trying again")
         print ("Press 1 + 2 on the Wii Remote")
@@ -86,7 +91,7 @@ while True:
         current_direction = "left"
     if (buttons & cwiid.BTN_RIGHT):
         current_direction = "right"
-    if (buttons & cwiid.BTN_A):
+    if (buttons & cwiid.BTN_A and camera_enable == True):
         timestring = time.strftime("%Y-%m-%dT%H.%M.%S", time.gmtime())
         print ("Taking photo " +timestring)
         camera.capture(photo_dir+'/photo_'+timestring+'.jpg')

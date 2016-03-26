@@ -4,9 +4,14 @@ import picamera, time
 from gpiozero import Robot
 
 robot = Robot(left=(17, 18), right=(22, 23))
-camera = picamera.PiCamera()
-camera.hflip=True
-camera.vflip=True
+camera_enable = False
+try:
+    camera = picamera.PiCamera()
+    camera.hflip=True
+    camera.vflip=True
+    camera_enable=True
+except:
+    print ("Camera not found - disabled");
 
 photo_dir = "/home/pi/photos"
 
@@ -78,7 +83,7 @@ while True:
     elif (ch in direction.keys()) :
         current_direction = direction[ch]
         print ("Direction "+current_direction)
-    elif (ch == '0') :
+    elif (ch == '0' and camera_enable == True) :
         timestring = time.strftime("%Y-%m-%dT%H.%M,%S", time.gmtime())
         print ("Taking photo " +timestring)
         camera.capture(photo_dir+'/photo_'+timestring+'.jpg')
